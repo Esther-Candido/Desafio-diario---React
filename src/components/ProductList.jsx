@@ -3,6 +3,7 @@ import ProductCard from './ProductCard';
 import './style.css';
 
 
+
 export default function ProductList() {
 const [produtos, setProdutos] = useState([]);  //variavel produtos, com um array vazio
 
