@@ -1,0 +1,26 @@
+/* style.css */
+.container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.imagem {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
