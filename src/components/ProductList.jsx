@@ -1,8 +1,32 @@
-import { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
 import './style.css';
 
 
+
+export default function ProductList({ produtos, onAdd }) {
+
+return (
+    <div className="container">
+    <h1>Produtos</h1>
+    {produtos.length === 0 ? (
+      <p>Carregando produtos...</p>
+    ) : (
+      <div className="grid">
+        {produtos.map((p) => (
+          <ProductCard key={p.id} produto={p} onAdd={onAdd}/>
+        ))}
+      </div>
+    )}
+  </div>
+);
+
+
+}//fim ProductList
+
+{/* ====== CÓDIGO ANTIGO UTEIS ======
+
+
+===antes productlist trazendo o estado dos produtos e exibindo nos cards
 
 export default function ProductList() {
 const [produtos, setProdutos] = useState([]);  //variavel produtos, com um array vazio
@@ -37,10 +61,7 @@ return (
   </div>
 );
 
-
-}//fim ProductList
-
-{/* ====== CÓDIGO ANTIGO UTEIS ======
+//outra coisa abaixo
 
 ---> jeito de trazer direto, sem o card (ProductCard)
 <ul>

@@ -16,4 +16,5 @@
 - Listas + .map()
 - React Router
 - Autenticação (login e token)
+- contexto global (React Context API)
 - ... 
