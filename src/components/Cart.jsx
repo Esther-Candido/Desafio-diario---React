@@ -5,6 +5,7 @@ export default function Cart({ itens, onRemove }) {
   return (
     <div>
       <h2>Carrinho</h2>
+      <h4>Meu App 🛒 - direto do Cart ({itens.length})</h4> {/*Mostrar no carrinho é util quando o contador está relacionado apenas ao carrinho.*/ }
       {itens.length === 0 ? (
         <p>Seu carrinho está vazio.</p>
       ) : (

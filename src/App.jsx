@@ -12,7 +12,6 @@ import Cart from './components/Cart';
 import ProductCard from './components/ProductCard'
 
 //App = chefe da loja
-
 function App() {
   const [produtos, setProdutos] = useState([]); //variavel produtos, com array vazio
   const [carrinho, setCarrinho] = useState([]); //variavel carrinho, com array vazio
@@ -42,10 +41,18 @@ function App() {
       setCarrinho(carrinho.filter((item) => item.id !== id)); //deixa no array os itens com ID diferente do que queremos remover  -- setcarrinho -> Atualiza o estado com o novo array, ou seja, remove de fato o item visualmente e logicamente
   };
 
+  //contador de produtos carrinho
+  const counterCarrinho = carrinho.length; 
+
+
+
+
+/*  <h1>Meu App 🛒 ({counterCarrinho})</h1>*/
   return (
        <div>
         <h1>Minha Loja</h1>
-        <Cart itens={carrinho} onRemove={removerProdCarrrinho}/>
+         <h4>Meu App 🛒 - direto do App.jsx ({counterCarrinho})</h4> {/*Mostrar no APP.JSX é útil quando você quer mostrar o número globalmente*/}
+        <Cart itens={carrinho} onRemove={removerProdCarrrinho} />
          <ProductList produtos={produtos} onAdd={adicionarAoCarrinho} />
       
     
