@@ -9,6 +9,9 @@ import MultiStepForm from './components/MultiStepForm'
 import ProductList from './components/ProductList'
 import { useState, useEffect } from 'react';
 import Cart from './components/Cart';
+import ProductCard from './components/ProductCard'
+
+//App = chefe da loja
 
 function App() {
   const [produtos, setProdutos] = useState([]); //variavel produtos, com array vazio
@@ -33,11 +36,19 @@ function App() {
     setCarrinho([...carrinho, produto]);
   };
 
+
+  //remover do carrinho
+  const removerProdCarrrinho = (id) => {
+      setCarrinho(carrinho.filter((item) => item.id !== id)); //deixa no array os itens com ID diferente do que queremos remover  -- setcarrinho -> Atualiza o estado com o novo array, ou seja, remove de fato o item visualmente e logicamente
+  };
+
   return (
        <div>
         <h1>Minha Loja</h1>
-        <Cart itens={carrinho} />
+        <Cart itens={carrinho} onRemove={removerProdCarrrinho}/>
          <ProductList produtos={produtos} onAdd={adicionarAoCarrinho} />
+      
+    
       </div>
     
   )
@@ -98,4 +109,13 @@ const vezes = () =>{
   
   
   
-  */}
+  */
+ 
+/* =========explicacao da logica do carrinho e produtos ======
+O chefe (App) diz para a estante (ProductList):
+"Para cada produto da loja, cole um cartaz (ProductCard) com o botão que, quando clicado, adiciona aquele produto ao carrinho (onAdd)".
+
+Já no Cart, o carrinho já tem os produtos, então o botão “Remover” pode chamar a função direto.
+*/
+
+}

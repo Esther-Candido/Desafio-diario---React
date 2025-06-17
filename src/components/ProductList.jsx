@@ -2,10 +2,11 @@ import ProductCard from './ProductCard';
 import './style.css';
 
 
-
+//ProductList = estante com vários produtos
 export default function ProductList({ produtos, onAdd }) {
 
 return (
+
     <div className="container">
     <h1>Produtos</h1>
     {produtos.length === 0 ? (
@@ -13,11 +14,12 @@ return (
     ) : (
       <div className="grid">
         {produtos.map((p) => (
-          <ProductCard key={p.id} produto={p} onAdd={onAdd}/>
+          <ProductCard key={p.id} produto={p} onAdd={onAdd}/>//enviar a funcao encapsulada adicionarAoCarrinho no onAdd para o ProductCard.. PQ NO PRODUCTLIST, estamos mapeando cada produto com o map.. com isso em cada produto da lista a chamada da funcao
         ))}
       </div>
     )}
   </div>
+
 );
 
 
@@ -72,4 +74,29 @@ return (
     ))}
 </ul> 
 
-*/}
+*/
+
+
+/* =======EXPLICACAO 
+
+✅ 1. ProductList está fazendo o mapeamento
+Ele tem o array completo de produtos.
+
+Com o .map(), ele constrói cada ProductCard.
+
+E aqui é o lugar certo para passar:
+
+o produto específico (produto={p})
+
+a função que sabe o que fazer ao clicar no botão (onAdd={onAdd}).
+
+✅ Como ele cria cada ProductCard, ele pode “injetar” o que for necessário.
+
+
+
+
+*/
+
+
+
+}
