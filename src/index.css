@@ -1,0 +1,33 @@
+
+body.tema-claro {
+  background-color: #fff;
+  color: #000;
+}
+
+body.tema-escuro {
+  background-color: #121212;
+  color: #eee;
+
+  .card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  color: #000;
+}
+}
+
+.tema-escuro button {
+  background-color: #333;
+  color: #eee;
+  border: none;
+
+}
+
+.tema-claro button {
+  background-color: #eee;
+  color: #000;
+  border: 1px solid #ccc;
+}

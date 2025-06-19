@@ -16,6 +16,7 @@ function App() {
   const [carrinho, setCarrinho] = useState(() => {const salvo = localStorage.getItem('carrinho');return salvo ? JSON.parse(salvo) : [];});
   const [produtos, setProdutos] = useState([]); //variavel produtos, com array vazio
   //const [carrinho, setCarrinho] = useState([]); //variavel carrinho, com array vazio
+  const [tema, setTema] = useState('claro');
  
 
   //salva o carrinho como texto sempre que ele muda, no localStorage ...(f12 navegador, application -> localstorage)
@@ -23,7 +24,10 @@ function App() {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
   }, [carrinho]);
 
-  
+    // Toda vez que tema mudar, atualizamos a classe do body
+  useEffect(() => {
+    document.body.className = tema === 'escuro' ? 'tema-escuro' : 'tema-claro';
+  }, [tema]);
 
   //Roda apenas uma vez ao carregar (pode ser usado -> Buscar dados de uma API, Adicionar um evento (ex: scroll, resize), Trabalhar com setTimeout ou setInterval, Atualizar o título da aba com document.title, Sincronizar dados com localStorage
   useEffect(() => {
@@ -38,6 +42,12 @@ function App() {
         });
     }, []); // [] faz com que o useEffect rode apenas 1 vez (ao carregar)
 
+
+  //funcao para mudar o tema do body
+  const mudarTema = () => {
+    setTema((prev) => (prev === 'claro' ? 'escuro' : 'claro'));
+  }
+  
   // Adiciona produto ao carrinho
   const adicionarAoCarrinho = (produto) => {
     //setCarrinho([...carrinho, produto]); //adicionar o produto no array carrinho
@@ -92,9 +102,10 @@ const decrementarQuantidade = (id) => {
 /*  <h1>Meu App 🛒 ({counterCarrinho})</h1>*/
   return (
        <div>
+        <Button label={`Mudar para ${tema === 'claro' ? 'escuro' : 'claro'}`} onClick={mudarTema} />
+        {/* <Button label={"Mudar para " + (tema === 'claro' ? 'escuro' : 'claro')} onClick={mudarTema} /> */}
         <h1>Minha Loja</h1>
          <h4>Meu App 🛒 - direto do App.jsx ({counterCarrinho})</h4> {/*Mostrar no APP.JSX é útil quando você quer mostrar o número globalmente*/}
-         <h6>({carrinho.quantidade})</h6>
         <Cart itens={carrinho} onRemove={removerProdCarrrinho} onIncrementar={incrementarQuantidade} onDecrementar={decrementarQuantidade}/>
          <ProductList produtos={produtos} onAdd={adicionarAoCarrinho} />
       
