@@ -13,9 +13,17 @@ import ProductCard from './components/ProductCard'
 
 //App = chefe da loja
 function App() {
+  const [carrinho, setCarrinho] = useState(() => {const salvo = localStorage.getItem('carrinho');return salvo ? JSON.parse(salvo) : [];});
   const [produtos, setProdutos] = useState([]); //variavel produtos, com array vazio
-  const [carrinho, setCarrinho] = useState([]); //variavel carrinho, com array vazio
+  //const [carrinho, setCarrinho] = useState([]); //variavel carrinho, com array vazio
+ 
 
+  //salva o carrinho como texto sempre que ele muda, no localStorage ...(f12 navegador, application -> localstorage)
+  useEffect(() => {
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  }, [carrinho]);
+
+  
 
   //Roda apenas uma vez ao carregar (pode ser usado -> Buscar dados de uma API, Adicionar um evento (ex: scroll, resize), Trabalhar com setTimeout ou setInterval, Atualizar o título da aba com document.title, Sincronizar dados com localStorage
   useEffect(() => {
