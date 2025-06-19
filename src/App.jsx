@@ -32,8 +32,42 @@ function App() {
 
   // Adiciona produto ao carrinho
   const adicionarAoCarrinho = (produto) => {
-    setCarrinho([...carrinho, produto]);
+    //setCarrinho([...carrinho, produto]); //adicionar o produto no array carrinho
+    
+    setCarrinho((prevCarrinho) => { //prevCarrinho é sempre o valor mais atual do estado. é um nome qualquer que representa o valor atual do carrinho.
+    const itemExistente = prevCarrinho.find((item) => item.id === produto.id);
+
+    if (itemExistente) {
+      // Atualiza a quantidade se já estiver no carrinho
+      return prevCarrinho.map((item) =>
+        item.id === produto.id
+          ? { ...item, quantidade: item.quantidade + 1 }
+          : item
+      );
+    } else {
+      // Adiciona novo item com quantidade 1
+      return [...prevCarrinho, { ...produto, quantidade: 1 }];
+    }
+  });
   };
+
+const incrementarQuantidade = (id) => {
+  setCarrinho(prev => prev.map(item =>
+    item.id === id ? { ...item, quantidade: item.quantidade + 1 } : item
+  ));
+};
+
+
+
+
+const decrementarQuantidade = (id) => {
+  setCarrinho(prev => prev.map(item => //map → atualiza a quantidade | filter → remove os que ficaram com quantidade <= 0
+      item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item
+    )
+    .filter(item => item.quantidade > 0) //remove se chegar em 0. pq o filter so mantem item que é maior que 0. ele apenas descarta (remove da lista final) os que não satisfazem a condição
+  );
+};
+
 
 
   //remover do carrinho
@@ -52,7 +86,8 @@ function App() {
        <div>
         <h1>Minha Loja</h1>
          <h4>Meu App 🛒 - direto do App.jsx ({counterCarrinho})</h4> {/*Mostrar no APP.JSX é útil quando você quer mostrar o número globalmente*/}
-        <Cart itens={carrinho} onRemove={removerProdCarrrinho} />
+         <h6>({carrinho.quantidade})</h6>
+        <Cart itens={carrinho} onRemove={removerProdCarrrinho} onIncrementar={incrementarQuantidade} onDecrementar={decrementarQuantidade}/>
          <ProductList produtos={produtos} onAdd={adicionarAoCarrinho} />
       
     
