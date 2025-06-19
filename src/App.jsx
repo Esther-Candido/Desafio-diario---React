@@ -16,13 +16,18 @@ function App() {
   const [carrinho, setCarrinho] = useState(() => {const salvo = localStorage.getItem('carrinho');return salvo ? JSON.parse(salvo) : [];});
   const [produtos, setProdutos] = useState([]); //variavel produtos, com array vazio
   //const [carrinho, setCarrinho] = useState([]); //variavel carrinho, com array vazio
-  const [tema, setTema] = useState('claro');
+  const [tema, setTema] = useState(() => {const salvoTema = localStorage.getItem('tema'); return salvoTema ? JSON.parse(salvoTema) : 'claro'});
  
 
   //salva o carrinho como texto sempre que ele muda, no localStorage ...(f12 navegador, application -> localstorage)
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
   }, [carrinho]);
+
+  //salvar o tema no localstorage
+  useEffect(() => {
+    localStorage.setItem('tema', JSON.stringify(tema));
+  }, [tema]);
 
     // Toda vez que tema mudar, atualizamos a classe do body
   useEffect(() => {

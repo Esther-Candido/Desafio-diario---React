@@ -5,7 +5,7 @@
 
 - Fundamentos React
 - JSX + Eventos
-- useState
+- UseState
 - Props e Componentes
 - Estilização (CSS/Tailwind)
 - Inputs controlados
@@ -16,5 +16,6 @@
 - Listas + .map()
 - React Router
 - Autenticação (login e token)
-- contexto global (React Context API)
+- Contexto global (React Context API)
+- Salvar em localStorage
 - ... 
